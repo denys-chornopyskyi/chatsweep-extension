@@ -1,5 +1,15 @@
 {
   "name": "ChatSweep",
   "description": "Selectively delete ChatGPT conversations. Select and clean up your chat history with full control.",
-  "version": "1.0"
+  "version": "1.0",
+  "manifest_version": 3,
+  "content_scripts": [
+    {
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "matches": [
+        "https://chatgpt.com/*"
+      ]
+    }
+  ]
 }
