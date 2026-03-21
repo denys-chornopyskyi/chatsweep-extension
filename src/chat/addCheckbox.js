@@ -6,7 +6,8 @@ export const addAllCheckBox = (chats, createCheckbox) => {
 		checkbox.addEventListener('click', (e) => {
 			e.stopPropagation()
 		})
-		chat.firstChild.insertBefore(checkbox, chat.firstChild.lastChild)
+		const check = chat.querySelector('label')
+		if (!check) chat.firstChild.insertBefore(checkbox, chat.firstChild.lastChild)
 	})
 }
 

@@ -5,6 +5,7 @@ class DebuggerManager {
 	}
 
 	async attach(tabId){
+		console.log(this.attached)
 		if (this.attached) return
 		await chrome.debugger.attach({tabId}, '1.3')
 		this.attached = true
@@ -46,19 +47,21 @@ class DebuggerManager {
 
 const Debugger = new DebuggerManager()
 
-chrome.runtime.onMessage.addListener(async (message, sender) => {
-	await Debugger.attach(sender.tab.id)
-	switch (message.type){
-		case 'CLICK_ELEMENT':
-			await Debugger.click(message.x, message.y)
-			break;
-		case 'HOVER_ELEMENT':
-			await Debugger.hover(message.x, message.y)
-			break;
-		case 'DETACH':
-			await Debugger.detach()
-			break;
-	}
+chrome.runtime.onMessage.addListener( (message, sender) => {
+	(async () => {
+		await Debugger.attach(sender.tab.id)
+		switch (message.type) {
+			case 'CLICK_ELEMENT':
+				await Debugger.click(message.x, message.y)
+				break;
+			case 'HOVER_ELEMENT':
+				await Debugger.hover(message.x, message.y)
+				break;
+			case 'DETACH':
+				await Debugger.detach()
+				break;
+		}
+	})()
 })
 
 
