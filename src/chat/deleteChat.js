@@ -8,6 +8,7 @@ export async function deleteChat(chat) {
 		await checkElementVisibility(chat, sidePanel)
 		await delay(100);
 		await hoverElement(chat)
+		await delay(100)
 
 		const menuBtn = chat.querySelector('button')
 		console.log(menuBtn)
