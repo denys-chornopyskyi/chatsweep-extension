@@ -28,10 +28,7 @@ const rootObserver = observe(document.body, debounce(() => {
 			console.log('Prev:', prevChatLength)
 			console.log('New:', newChatLength)
 			console.log(newChat.slice(prevChatLength))
-
-			if (newChatLength !== prevChatLength) {
-				addAllCheckBox(newChat.slice(prevChatLength), createCheckbox)
-			}
+			addAllCheckBox(newChat, createCheckbox)
 			prevChatLength = newChatLength;
 		})
 	}
